@@ -9,6 +9,7 @@ venv
 .coverage
 *.sqlite3
 htmlcov
+.env
 
 # OS
 .DS_Store

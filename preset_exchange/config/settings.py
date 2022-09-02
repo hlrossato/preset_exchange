@@ -10,12 +10,13 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
-from pathlib import Path
 
 from decouple import config
+from dj_database_url import parse as db_url
+from unipath import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,7 +44,9 @@ DEFAULT_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "django_extensions",
+]
 PROJECT_APPS = []
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -83,15 +86,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
-    "default": {
-        "ENGINE": config("DB_ENGINE"),
-        "NAME": config("DB_NAME"),
-        "USER": config("DB_USER"),
-        "PASSWORD": config("DB_PASSWORD"),
-        "HOST": config("DB_HOST"),
-        "PORT": config("DB_PORT"),
-    }
+    "default": config(
+        "DATABASE_URL", default="sqlite:///" + BASE_DIR.child("db.sqlite3"), cast=db_url
+    )
 }
 
 
