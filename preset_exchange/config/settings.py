@@ -47,7 +47,11 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     "django_extensions",
 ]
-PROJECT_APPS = []
+
+PROJECT_APPS = [
+    "presets.apps.PresetsConfig",
+    "users.apps.UsersConfig",
+]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
