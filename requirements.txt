@@ -9,3 +9,6 @@ pytest-coverage==0.0
 pytest-django==4.5.2
 python-decouple==3.6
 whitenoise==6.2.0
+unipath
+django-extensions
+dj-database-url
